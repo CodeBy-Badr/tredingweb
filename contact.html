@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CryptoTrade</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-currency-bitcoin"></i> CryptoTrade
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="markets.html">
+                            <i class="bi bi-graph-up"></i> Marchés
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">
+                            <i class="bi bi-wallet2"></i> Portefeuille
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trading.html">Trading</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">
+                            <i class="bi bi-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Connexion
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="contact-header pt-5 pb-4" style="margin-top: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3 text-center">Nous Contacter</h1>
+            <p class="lead mb-0 text-center">Nous sommes là pour vous aider! Contactez-nous pour toute question ou assistance.</p>
+        </div>
+    </section>
+
+    <!-- Informations de Contact -->
+    <section class="contact-info py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Adresse -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mb-3">
+                                <i class="bi bi-geo-alt" style="font-size: 2.5rem; color: #667eea;"></i>
+                            </div>
+                            <h5 class="card-title">Adresse</h5>
+                            <p class="card-text text-muted">
+                                123 Rue de la Crypto<br>
+                                75001 Paris<br>
+                                France
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mb-3">
+                                <i class="bi bi-telephone" style="font-size: 2.5rem; color: #764ba2;"></i>
+                            </div>
+                            <h5 class="card-title">Téléphone</h5>
+                            <p class="card-text text-muted">
+                                <strong>Support:</strong> +33 1 23 45 67 89<br>
+                                <strong>Commercial:</strong> +33 1 98 76 54 32<br>
+                                Disponible 24/7
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mb-3">
+                                <i class="bi bi-envelope" style="font-size: 2.5rem; color: #28a745;"></i>
+                            </div>
+                            <h5 class="card-title">Email</h5>
+                            <p class="card-text text-muted">
+                                <strong>Support:</strong> support@cryptotrade.fr<br>
+                                <strong>Commercial:</strong> contact@cryptotrade.fr<br>
+                                <strong>Sécurité:</strong> security@cryptotrade.fr
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horaires d'Ouverture -->
+    <section class="business-hours py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-clock"></i> Horaires d'Ouverture</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="mb-3">Support Client</h6>
+                                    <div class="mb-2">
+                                        <strong>Lundi - Vendredi:</strong> 09:00 - 18:00
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Samedi:</strong> 10:00 - 14:00
+                                    </div>
+                                    <div>
+                                        <strong>Dimanche:</strong> Fermé
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="mb-3">Support d'Urgence</h6>
+                                    <div class="mb-2">
+                                        <span class="badge bg-success">Disponible 24/7</span>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p class="text-muted">
+                                            Pour les problèmes de sécurité ou d'urgence, nous sommes disponibles 24 heures sur 24.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulaire de Contact -->
+    <section class="contact-form-section py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h2 class="section-title mb-3 text-center">
+                        <i class="bi bi-chat-left-text"></i> Envoyez-nous un Message
+                    </h2>
+                    <p class="lead text-muted">Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les 24 heures.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-5">
+                            <form id="contactForm">
+                                <!-- Nom -->
+                                <div class="mb-4">
+                                    <label for="nomContact" class="form-label fw-bold">Nom Complet *</label>
+                                    <input type="text" class="form-control form-control-lg" id="nomContact" 
+                                           placeholder="Jean Dupont" required>
+                                    <small class="form-text text-muted">Veuillez entrer votre nom complet</small>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="mb-4">
+                                    <label for="emailContact" class="form-label fw-bold">Adresse Email *</label>
+                                    <input type="email" class="form-control form-control-lg" id="emailContact" 
+                                           placeholder="jean@example.com" required>
+                                    <small class="form-text text-muted">Nous vous répondrons à cette adresse</small>
+                                </div>
+
+                                <!-- Téléphone -->
+                                <div class="mb-4">
+                                    <label for="telephoneContact" class="form-label fw-bold">Téléphone (optionnel)</label>
+                                    <input type="tel" class="form-control form-control-lg" id="telephoneContact" 
+                                           placeholder="+33 1 23 45 67 89">
+                                </div>
+
+                                <!-- Sujet -->
+                                <div class="mb-4">
+                                    <label for="sujetContact" class="form-label fw-bold">Sujet *</label>
+                                    <select class="form-select form-select-lg" id="sujetContact" required>
+                                        <option value="">-- Sélectionner un sujet --</option>
+                                        <option value="support">Support Technique</option>
+                                        <option value="compte">Problème de Compte</option>
+                                        <option value="transaction">Problème de Transaction</option>
+                                        <option value="securite">Question de Sécurité</option>
+                                        <option value="commercial">Demande Commerciale</option>
+                                        <option value="feedback">Retour & Suggestions</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+
+                                <!-- Priorité -->
+                                <div class="mb-4">
+                                    <label for="prioriteContact" class="form-label fw-bold">Priorité</label>
+                                    <select class="form-select form-select-lg" id="prioriteContact">
+                                        <option value="normal">Normal</option>
+                                        <option value="haut">Haut</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="mb-4">
+                                    <label for="messageContact" class="form-label fw-bold">Message *</label>
+                                    <textarea class="form-control form-control-lg" id="messageContact" rows="6" 
+                                              placeholder="Décrivez votre question ou problème en détail..." required></textarea>
+                                    <small class="form-text text-muted">Minimum 10 caractères</small>
+                                </div>
+
+                                <!-- Fichier -->
+                                <div class="mb-4">
+                                    <label for="fichierContact" class="form-label fw-bold">Ajouter une pièce jointe (optionnel)</label>
+                                    <input type="file" class="form-control form-control-lg" id="fichierContact">
+                                    <small class="form-text text-muted">Formats acceptés: PDF, JPG, PNG (max 5MB)</small>
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="mb-4 form-check">
+                                    <input type="checkbox" class="form-check-input" id="acceptConditions" required>
+                                    <label class="form-check-label" for="acceptConditions">
+                                        J'accepte les conditions d'utilisation et la politique de confidentialité
+                                    </label>
+                                </div>
+
+                                <!-- Boutons -->
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-send"></i> Envoyer le Message
+                                    </button>
+                                    <button type="reset" class="btn btn-outline-secondary btn-lg">
+                                        <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h2 class="section-title mb-4 text-center">
+                        <i class="bi bi-question-circle"></i> Questions Fréquemment Posées
+                    </h2>
+                    <p class="text-muted">Trouvez les réponses aux questions les plus courantes ci-dessous</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- Q1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Comment créer un compte sur CryptoTrade?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Pour créer un compte, cliquez sur le bouton "S'inscrire" en haut à droite de la page. Vous devrez fournir votre email, créer un mot de passe sécurisé et accepter les conditions d'utilisation. Après la confirmation par email, votre compte sera activé immédiatement.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Quels sont les frais de transaction?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Les frais de transaction varient selon le type d'opération: 0.1% pour les achats/ventes de crypto, 1% pour les dépôts et 0.5% pour les retraits. Les utilisateurs Premium bénéficient de réductions jusqu'à 50%.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Comment vérifier mon identité?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>La vérification d'identité (KYC) est requise pour accéder à certaines fonctionnalités. Allez dans les paramètres de votre compte, cliquez sur "Vérification KYC" et suivez les instructions. Vous devrez fournir une pièce d'identité et une preuve d'adresse.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Mon compte a été hacké, que faire?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Si vous soupçonnez un hack, contactez immédiatement notre équipe de sécurité à security@cryptotrade.fr. Changez votre mot de passe, activez l'authentification à deux facteurs (2FA) et consultez votre historique de transactions. Ne partagez jamais vos clés privées ou codes de vérification.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Combien de temps prend un retrait?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Les retraits sont généralement traités en 24-48 heures ouvrables. Pour les virements bancaires, il peut y avoir un délai supplémentaire de 1-3 jours selon votre banque. Les transferts de crypto sont instantanés.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    CryptoTrade est-il sécurisé?
+                                </button>
+                            </h2>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Oui, CryptoTrade utilise le chiffrement SSL, l'authentification à deux facteurs, et stocker 95% des actifs dans des portefeuilles froids sécurisés. Nous avons également une assurance complète contre les cyber-attaques et les fraudes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channels Section -->
+    <section class="channels-section py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h2 class="section-title mb-4 text-center">
+                        <i class="bi bi-chat-dots"></i> Autres Canaux de Communication
+                    </h2>
+                    <p class="text-muted">Contactez-nous via vos canaux préférés</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card text-center shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-chat-left-dots" style="font-size: 2rem; color: #667eea;"></i>
+                            <h6 class="card-title mt-3">Chat en Direct</h6>
+                            <p class="card-text text-muted small">
+                                Disponible 24/7 pour une assistance immédiate
+                            </p>
+                            <button class="btn btn-sm btn-primary">Ouvrir le Chat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card text-center shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-twitter" style="font-size: 2rem; color: #1DA1F2;"></i>
+                            <h6 class="card-title mt-3">Twitter</h6>
+                            <p class="card-text text-muted small">
+                                Suivez-nous pour les dernières mises à jour
+                            </p>
+                            <button class="btn btn-sm btn-outline-info">Suivre</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card text-center shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-discord" style="font-size: 2rem; color: #5865F2;"></i>
+                            <h6 class="card-title mt-3">Discord</h6>
+                            <p class="card-text text-muted small">
+                                Rejoignez notre communauté
+                            </p>
+                            <button class="btn btn-sm btn-outline-primary">Rejoindre</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card text-center shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-telephone" style="font-size: 2rem; color: #28a745;"></i>
+                            <h6 class="card-title mt-3">Appel Vidéo</h6>
+                            <p class="card-text text-muted small">
+                                Planifiez un appel avec un expert
+                            </p>
+                            <button class="btn btn-sm btn-outline-success">Planifier</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-4">
+                    <h5><i class="bi bi-currency-bitcoin"></i> CryptoTrade</h5>
+                    <p>La plateforme de trading la plus fiable et sécurisée.</p>
+                    <div class="social-links">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Produits</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Spot Trading</a></li>
+                        <li><a href="#" class="text-white-50">Futures</a></li>
+                        <li><a href="#" class="text-white-50">Options</a></li>
+                        <li><a href="#" class="text-white-50">Staking</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Ressources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Blog</a></li>
+                        <li><a href="#" class="text-white-50">Documentation</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Légal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Conditions</a></li>
+                        <li><a href="#" class="text-white-50">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-white-50">Cookies</a></li>
+                        <li><a href="#" class="text-white-50">Mentions Légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 CryptoTrade. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Dernière mise à jour: 28 Décembre 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Mot de Passe</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Se connecter
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

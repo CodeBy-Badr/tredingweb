@@ -1,0 +1,617 @@
+/* ==========================================
+   VARIABLES ET RESET GLOBAL
+   ========================================== */
+:root {
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --dark-color: #1a1a1a;
+    --light-color: #f8f9fa;
+    --crypto-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================
+   NAVBAR STYLING
+   ========================================== */
+.navbar {
+    background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    color: #ffc107 !important;
+    transition: var(--transition);
+}
+
+.navbar-brand:hover {
+    color: #ffb700 !important;
+    transform: scale(1.05);
+}
+
+.nav-link {
+    margin: 0 10px;
+    transition: var(--transition);
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffc107;
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero-section {
+    margin-top: 80px;
+    padding: 60px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 0.8s ease;
+}
+
+.hero-section .lead {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    animation: slideInLeft 0.8s ease 0.2s backwards;
+}
+
+.hero-section .btn {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    animation: slideInLeft 0.8s ease 0.4s backwards;
+}
+
+.hero-section .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bg-gradient-crypto {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    animation: slideInRight 0.8s ease 0.2s backwards;
+}
+
+/* ==========================================
+   SECTIONS PRINCIPALES
+   ========================================== */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+}
+
+.markets-section {
+    padding: 80px 0;
+}
+
+.trading-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.portefeuille-section {
+    padding: 80px 0;
+}
+
+.contact-section {
+    padding: 80px 0;
+}
+
+/* ==========================================
+   TABLES ET DONNÉES
+   ========================================== */
+.markets-table {
+    margin-top: 30px;
+}
+
+.markets-table thead {
+    background-color: #2d2d2d;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.markets-table tbody tr {
+    transition: var(--transition);
+    border-bottom: 1px solid #444;
+}
+
+.markets-table tbody tr:hover {
+    background-color: #3d3d3d;
+    transform: scale(1.01);
+}
+
+.markets-table td {
+    vertical-align: middle;
+    padding: 15px;
+}
+
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   CARTES ET FORMULAIRES
+   ========================================== */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: var(--transition);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0;
+    font-weight: 700;
+    padding: 20px;
+    border: none;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* ==========================================
+   FORMULAIRES ET INPUTS
+   ========================================== */
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding: 10px 15px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    transform: scale(1.02);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* ==========================================
+   BOUTONS
+   ========================================== */
+.btn {
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+    border: none;
+}
+
+.btn-lg {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+}
+
+/* ==========================================
+   OFFCANVAS
+   ========================================== */
+.offcanvas {
+    width: 400px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.offcanvas-header {
+    padding: 25px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.offcanvas-body {
+    padding: 25px;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .offcanvas {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+   MODALES
+   ========================================== */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+    border: none;
+    padding: 25px;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    border-top: 1px solid #eee;
+    padding: 20px 25px;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+    margin-top: 80px;
+}
+
+.footer h5,
+.footer h6 {
+    color: #ffc107;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer a {
+    transition: var(--transition);
+}
+
+.footer a:hover {
+    color: #ffc107 !important;
+    transform: translateX(5px);
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links .btn {
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================
+   BADGES ET ALERTES
+   ========================================== */
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* ==========================================
+   FILTRES ET RECHERCHE
+   ========================================== */
+#searchCrypto,
+#filterCrypto,
+#sortCrypto {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding: 10px 15px;
+}
+
+#searchCrypto:focus,
+#filterCrypto:focus,
+#sortCrypto:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 1200px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .hero-section {
+        margin-top: 60px;
+        padding: 40px 0;
+        min-height: auto;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .markets-table {
+        font-size: 0.9rem;
+    }
+
+    .markets-table td {
+        padding: 10px 5px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .offcanvas {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+   UTILITAIRES
+   ========================================== */
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.text-white-50:hover {
+    color: #fff;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+.rounded-15 {
+    border-radius: 15px;
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* ==========================================
+   ÉTATS DES ÉLÉMENTS
+   ========================================== */
+.btn-check:checked + .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border-color: #667eea !important;
+    color: white !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.form-control[type="number"]::-webkit-outer-spin-button,
+.form-control[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ==========================================
+   SCROLLBAR STYLING
+   ========================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ==========================================
+   CURSOR CUSTOM
+   ========================================== */
+.table tbody tr {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}

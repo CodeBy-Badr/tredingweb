@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoTrade - Plateforme de Trading Crypto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="bi bi-currency-bitcoin"></i> CryptoTrade
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="markets.html">Marchés</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Portefeuille</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trading.html">Trading</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Connexion
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section pt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4 text-center">Bienvenue sur CryptoTrade</h1>
+                    <p class="lead mb-4 text-center">La plateforme de trading de cryptomonnaies la plus fiable et sécurisée du marché.</p>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            S'inscrire
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg">
+                            En savoir plus
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card bg-gradient-crypto p-5 text-center">
+                        <h2 class="text-white">Taux de Change Actuel</h2>
+                        <p class="text-warning mt-3">
+                            <i class="bi bi-currency-bitcoin"></i> BTC
+                        </p>
+                        <h1 class="text-white" id="btcPrice">$45,234</h1>
+                        <p class="text-success">
+                            <i class="bi bi-arrow-up"></i> +2.5% (24h)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section id="markets" class="markets-section py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-graph-up"></i> Marchés Principaux
+            </h2>
+            
+            <!-- Filters and Search -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="searchCrypto" placeholder="Rechercher une cryptomonnaie...">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="filterCrypto">
+                        <option value="">Toutes les cryptos</option>
+                        <option value="Bitcoin">Bitcoin</option>
+                        <option value="Ethereum">Ethereum</option>
+                        <option value="Binance">Binance</option>
+                        <option value="Ripple">Ripple</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="sortCrypto">
+                        <option value="">Trier par</option>
+                        <option value="prix">Prix (↓)</option>
+                        <option value="variation">Variation (↓)</option>
+                        <option value="volume">Volume (↓)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Markets Table -->
+            <div class="table-responsive">
+                <table class="table table-hover table-dark markets-table">
+                    <thead>
+                        <tr>
+                            <th>Crypto</th>
+                            <th>Prix</th>
+                            <th>Variation 24h</th>
+                            <th>Volume 24h</th>
+                            <th>Cap. Marché</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cryptoTable">
+                        <!-- Les données seront chargées avec JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Section -->
+    <section id="trading" class="trading-section py-5">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-shop"></i> Interface de Trading
+            </h2>
+            
+            <div class="row">
+                <!-- Trading Form -->
+                <div class="col-lg-6">
+                    <div class="card border-primary shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Passer un Ordre</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="tradingForm">
+                                <!-- Type d'ordre -->
+                                <div class="mb-3">
+                                    <label class="form-label">Type d'Ordre</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="orderType" id="achat" value="achat" checked>
+                                        <label class="btn btn-outline-success" for="achat">
+                                            <i class="bi bi-arrow-up"></i> Achat
+                                        </label>
+                                        <input type="radio" class="btn-check" name="orderType" id="vente" value="vente">
+                                        <label class="btn btn-outline-danger" for="vente">
+                                            <i class="bi bi-arrow-down"></i> Vente
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Sélection de la crypto -->
+                                <div class="mb-3">
+                                    <label for="cryptoSelect" class="form-label">Sélectionner une Crypto</label>
+                                    <select class="form-select" id="cryptoSelect" required>
+                                        <option value="">Choisir une cryptomonnaie</option>
+                                        <option value="Bitcoin">Bitcoin (BTC)</option>
+                                        <option value="Ethereum">Ethereum (ETH)</option>
+                                        <option value="Binance">Binance Coin (BNB)</option>
+                                        <option value="Ripple">Ripple (XRP)</option>
+                                        <option value="Cardano">Cardano (ADA)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Prix -->
+                                <div class="mb-3">
+                                    <label for="price" class="form-label">Prix Unitaire ($)</label>
+                                    <input type="number" class="form-control" id="price" placeholder="0.00" step="0.01" required>
+                                </div>
+
+                                <!-- Quantité -->
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Quantité</label>
+                                    <input type="number" class="form-control" id="quantity" placeholder="0.00" step="0.0001" required>
+                                </div>
+
+                                <!-- Total -->
+                                <div class="mb-3">
+                                    <label class="form-label">Total Estimé</label>
+                                    <div class="alert alert-info">
+                                        <h4 id="totalEstimate">$0.00</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Type de commande -->
+                                <div class="mb-3">
+                                    <label class="form-label">Type de Commande</label>
+                                    <select class="form-select" id="orderTypeSelect">
+                                        <option value="limit">Ordre Limité</option>
+                                        <option value="market">Ordre au Marché</option>
+                                        <option value="stop">Ordre Stop Loss</option>
+                                    </select>
+                                </div>
+
+                                <!-- Boutons -->
+                                <button type="submit" class="btn btn-success w-100 btn-lg">
+                                    <i class="bi bi-check-circle"></i> Confirmer l'Ordre
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Section -->
+                <div class="col-lg-6">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Votre Portefeuille</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-success">
+                                <h4>Solde Total</h4>
+                                <h2 class="text-success" id="totalBalance">$10,000.00</h2>
+                            </div>
+
+                            <!-- Portfolio Table -->
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Crypto</th>
+                                            <th>Quantité</th>
+                                            <th>Valeur</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="portfolioTable">
+                                        <tr>
+                                            <td><i class="bi bi-currency-bitcoin"></i> Bitcoin</td>
+                                            <td>0.5 BTC</td>
+                                            <td>$22,617</td>
+                                            <td><span class="badge bg-success">45%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="bi bi-coin"></i> Ethereum</td>
+                                            <td>5 ETH</td>
+                                            <td>$15,000</td>
+                                            <td><span class="badge bg-primary">30%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-warning text-dark">BNB</span></td>
+                                            <td>20 BNB</td>
+                                            <td>$6,200</td>
+                                            <td><span class="badge bg-info">12%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>USD</td>
+                                            <td>-</td>
+                                            <td>$5,183</td>
+                                            <td><span class="badge bg-secondary">10%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#deposer">
+                                    <i class="bi bi-cash-coin"></i> Dépôt
+                                </button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="offcanvas" data-bs-target="#retrait">
+                                    <i class="bi bi-arrow-repeat"></i> Retrait
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offcanvas - Dépôt -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="deposer">
+        <div class="offcanvas-header bg-primary text-white">
+            <h5 class="offcanvas-title">Effectuer un Dépôt</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="depotForm">
+                <div class="mb-3">
+                    <label for="methodeDpot" class="form-label">Méthode de Paiement</label>
+                    <select class="form-select" id="methodeDpot">
+                        <option value="">Choisir une méthode</option>
+                        <option value="carte">Carte Bancaire</option>
+                        <option value="virement">Virement Bancaire</option>
+                        <option value="wallet">Portefeuille Crypto</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="montantDpot" class="form-label">Montant ($)</label>
+                    <input type="number" class="form-control" id="montantDpot" placeholder="100.00" step="0.01">
+                </div>
+
+                <div class="alert alert-info">
+                    <small>Frais de transaction: <span id="fraisDpot">1%</span></small>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check-circle"></i> Confirmer le Dépôt
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Offcanvas - Retrait -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="retrait">
+        <div class="offcanvas-header bg-danger text-white">
+            <h5 class="offcanvas-title">Effectuer un Retrait</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="retraitForm">
+                <div class="mb-3">
+                    <label for="methodeRetrait" class="form-label">Méthode de Retrait</label>
+                    <select class="form-select" id="methodeRetrait">
+                        <option value="">Choisir une méthode</option>
+                        <option value="carte">Virement Bancaire</option>
+                        <option value="wallet">Portefeuille Crypto</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="montantRetrait" class="form-label">Montant ($)</label>
+                    <input type="number" class="form-control" id="montantRetrait" placeholder="100.00" step="0.01">
+                </div>
+
+                <div class="mb-3">
+                    <label for="adresseRetrait" class="form-label">Adresse de Destination</label>
+                    <textarea class="form-control" id="adresseRetrait" rows="3" placeholder="Entrer l'adresse du portefeuille"></textarea>
+                </div>
+
+                <div class="alert alert-warning">
+                    <small><strong>Attention:</strong> Vérifiez bien l'adresse avant de confirmer!</small>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-check-circle"></i> Confirmer le Retrait
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Portefeuille Section -->
+    <section id="portefeuille" class="portefeuille-section py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-wallet2"></i> Gestion du Portefeuille
+            </h2>
+
+            <div class="row">
+                <!-- Stats Cards -->
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">Valeur Totale</h6>
+                            <h3 class="text-success">$46,000</h3>
+                            <small class="text-success"><i class="bi bi-arrow-up"></i> +5.2%</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">Bénéfices</h6>
+                            <h3 class="text-success">$6,000</h3>
+                            <small class="text-success"><i class="bi bi-arrow-up"></i> +15%</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">Actifs</h6>
+                            <h3>4</h3>
+                            <small>Différents actifs</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">Transactions</h6>
+                            <h3>24</h3>
+                            <small>Ce mois</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Transactions -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Historique des Transactions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Crypto</th>
+                                    <th>Quantité</th>
+                                    <th>Prix</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-12-28 14:30</td>
+                                    <td><span class="badge bg-success">Achat</span></td>
+                                    <td>Bitcoin (BTC)</td>
+                                    <td>0.1</td>
+                                    <td>$4,523</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-27 10:15</td>
+                                    <td><span class="badge bg-danger">Vente</span></td>
+                                    <td>Ethereum (ETH)</td>
+                                    <td>1</td>
+                                    <td>$3,000</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-26 09:45</td>
+                                    <td><span class="badge bg-info">Dépôt</span></td>
+                                    <td>USD</td>
+                                    <td>5000</td>
+                                    <td>-</td>
+                                    <td><span class="badge bg-warning">En Attente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-25 16:20</td>
+                                    <td><span class="badge bg-success">Achat</span></td>
+                                    <td>Binance Coin (BNB)</td>
+                                    <td>5</td>
+                                    <td>$310</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-envelope"></i> Nous Contacter
+            </h2>
+
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-primary h-100">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-geo-alt text-primary"></i> Adresse</h5>
+                            <p>123 Rue de la Crypto<br>75001 Paris, France</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-primary h-100">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-telephone text-primary"></i> Téléphone</h5>
+                            <p>+33 1 23 45 67 89<br>support@cryptotrade.fr</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-primary h-100">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-clock text-primary"></i> Horaires</h5>
+                            <p>Lun-Ven: 09:00-18:00<br>Sam-Dim: Fermé</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Formulaire de Contact</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="nomContact" class="form-label">Nom Complet</label>
+                                    <input type="text" class="form-control" id="nomContact" placeholder="Jean Dupont" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="emailContact" class="form-label">Adresse Email</label>
+                                    <input type="email" class="form-control" id="emailContact" placeholder="jean@example.com" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="sujetContact" class="form-label">Sujet</label>
+                                    <select class="form-select" id="sujetContact" required>
+                                        <option value="">Choisir un sujet</option>
+                                        <option value="support">Support Technique</option>
+                                        <option value="compte">Problème de Compte</option>
+                                        <option value="transaction">Problème de Transaction</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="messageContact" class="form-label">Message</label>
+                                    <textarea class="form-control" id="messageContact" rows="5" placeholder="Votre message ici..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-send"></i> Envoyer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-4">
+                    <h5>
+                        <i class="bi bi-currency-bitcoin"></i> CryptoTrade
+                    </h5>
+                    <p>La plateforme de trading la plus fiable et sécurisée.</p>
+                    <div class="social-links">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Produits</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Spot Trading</a></li>
+                        <li><a href="#" class="text-white-50">Futures</a></li>
+                        <li><a href="#" class="text-white-50">Options</a></li>
+                        <li><a href="#" class="text-white-50">Staking</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Ressources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Blog</a></li>
+                        <li><a href="#" class="text-white-50">Documentation</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Légal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Conditions</a></li>
+                        <li><a href="#" class="text-white-50">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-white-50">Cookies</a></li>
+                        <li><a href="#" class="text-white-50">Mentions Légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 CryptoTrade. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Dernière mise à jour: 28 Décembre 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Mot de Passe</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Se connecter
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="w-100">Pas de compte? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">S'inscrire</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">S'inscrire</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Nom Complet</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Mot de Passe</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPasswordConfirm" class="form-label">Confirmer le Mot de Passe</label>
+                            <input type="password" class="form-control" id="registerPasswordConfirm" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                            <label class="form-check-label" for="acceptTerms">
+                                J'accepte les conditions d'utilisation
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">
+                            S'inscrire
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
