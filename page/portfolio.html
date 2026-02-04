@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portefeuille - CryptoTrade</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="bi bi-currency-bitcoin"></i> CryptoTrade
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="markets.html">
+                            <i class="bi bi-graph-up"></i> Marchés
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="portfolio.html">
+                            <i class="bi bi-wallet2"></i> Portefeuille
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trading.html">Trading</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Connexion
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="portfolio-header pt-5 pb-4" style="margin-top: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4 text-center">Votre Portefeuille</h1>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-transparent border-white text-white">
+                        <div class="card-body">
+                            <small>Solde Total</small>
+                            <h2 id="totalBalance">$46,000.00</h2>
+                            <small class="text-success"><i class="bi bi-arrow-up"></i> +5.2% (24h)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-transparent border-white text-white">
+                        <div class="card-body">
+                            <small>Bénéfices/Pertes</small>
+                            <h2 class="text-success">$6,000.00</h2>
+                            <small>+15% depuis le départ</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-transparent border-white text-white">
+                        <div class="card-body">
+                            <small>Investissement</small>
+                            <h2>$40,000.00</h2>
+                            <small>Capital investi</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-transparent border-white text-white">
+                        <div class="card-body">
+                            <small>Nombre d'Actifs</small>
+                            <h2>4</h2>
+                            <small>Différents actifs</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Actions Rapides -->
+    <section class="actions-section py-4 bg-light border-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#deposer">
+                        <i class="bi bi-cash-coin"></i> Dépôt
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-danger" data-bs-toggle="offcanvas" data-bs-target="#retrait">
+                        <i class="bi bi-arrow-repeat"></i> Retrait
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-success" onclick="window.location.href='index.html#trading'">
+                        <i class="bi bi-shop"></i> Trader
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-info" onclick="transferModal()">
+                        <i class="bi bi-arrow-left-right"></i> Transférer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="portfolio-content py-5">
+        <div class="container">
+            <ul class="nav nav-tabs mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="assets-tab" data-bs-toggle="tab" data-bs-target="#assets-content" type="button" role="tab">
+                        <i class="bi bi-pie-chart"></i> Mes Actifs
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="transactions-tab" data-bs-toggle="tab" data-bs-target="#transactions-content" type="button" role="tab">
+                        <i class="bi bi-clock-history"></i> Historique
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance-content" type="button" role="tab">
+                        <i class="bi bi-graph-up"></i> Performance
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="allocation-tab" data-bs-toggle="tab" data-bs-target="#allocation-content" type="button" role="tab">
+                        <i class="bi bi-distribution"></i> Allocation
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- Mes Actifs -->
+                <div class="tab-pane fade show active" id="assets-content" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Crypto</th>
+                                    <th>Quantité</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Valeur Totale</th>
+                                    <th>Variation 24h</th>
+                                    <th>% du Portefeuille</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="assetsTableBody">
+                                <!-- Données chargées dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Résumé -->
+                    <div class="row mt-5">
+                        <div class="col-md-6 offset-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span>Total des Actifs:</span>
+                                        <strong>$46,000.00</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span>Cash Disponible:</span>
+                                        <strong>$5,183.00</strong>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span><strong>Solde Total:</strong></span>
+                                        <strong class="text-success">$51,183.00</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historique des Transactions -->
+                <div class="tab-pane fade" id="transactions-content" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Crypto</th>
+                                    <th>Quantité</th>
+                                    <th>Prix</th>
+                                    <th>Frais</th>
+                                    <th>Total</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-12-28 14:30</td>
+                                    <td><span class="badge bg-success">Achat</span></td>
+                                    <td><strong>Bitcoin (BTC)</strong></td>
+                                    <td>0.1</td>
+                                    <td>$45,234</td>
+                                    <td>$45.23</td>
+                                    <td>$4,568.63</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-27 10:15</td>
+                                    <td><span class="badge bg-danger">Vente</span></td>
+                                    <td><strong>Ethereum (ETH)</strong></td>
+                                    <td>1</td>
+                                    <td>$3,000</td>
+                                    <td>$3.00</td>
+                                    <td>$2,997.00</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-26 09:45</td>
+                                    <td><span class="badge bg-info">Dépôt</span></td>
+                                    <td><strong>USD</strong></td>
+                                    <td>5000</td>
+                                    <td>$1</td>
+                                    <td>$50</td>
+                                    <td>$4,950</td>
+                                    <td><span class="badge bg-warning">En Attente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-25 16:20</td>
+                                    <td><span class="badge bg-success">Achat</span></td>
+                                    <td><strong>Binance Coin (BNB)</strong></td>
+                                    <td>5</td>
+                                    <td>$310</td>
+                                    <td>$7.75</td>
+                                    <td>$1,557.25</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-24 11:00</td>
+                                    <td><span class="badge bg-success">Achat</span></td>
+                                    <td><strong>Cardano (ADA)</strong></td>
+                                    <td>100</td>
+                                    <td>$1.20</td>
+                                    <td>$0.12</td>
+                                    <td>$119.88</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-23 15:45</td>
+                                    <td><span class="badge bg-info">Dépôt</span></td>
+                                    <td><strong>USD</strong></td>
+                                    <td>10000</td>
+                                    <td>$1</td>
+                                    <td>$100</td>
+                                    <td>$9,900</td>
+                                    <td><span class="badge bg-success">Confirmée</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Précédent</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Suivant</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Performance -->
+                <div class="tab-pane fade" id="performance-content" role="tabpanel">
+                    <div class="row mb-5">
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-primary text-white">
+                                    <h6 class="mb-0">Rentabilité par Période</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>24h</span>
+                                            <strong class="text-success">+2.5%</strong>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 52.5%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>7 jours</span>
+                                            <strong class="text-success">+8.3%</strong>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 58.3%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>30 jours</span>
+                                            <strong class="text-success">+12.1%</strong>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 62.1%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Depuis le Début</span>
+                                            <strong class="text-success">+15.0%</strong>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-info text-white">
+                                    <h6 class="mb-0">Statistiques Principales</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <small class="text-muted">Gain Réalisé</small>
+                                        <h5 class="text-success">$6,000.00</h5>
+                                    </div>
+                                    <div class="mb-3">
+                                        <small class="text-muted">Gain Non Réalisé</small>
+                                        <h5 class="text-success">$3,500.00</h5>
+                                    </div>
+                                    <div class="mb-3">
+                                        <small class="text-muted">Rendement Total</small>
+                                        <h5 class="text-success">$9,500.00</h5>
+                                    </div>
+                                    <div class="mb-3">
+                                        <small class="text-muted">Taux de Rendement</small>
+                                        <h5 class="text-success">15.0%</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graphique -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="mb-0">Évolution du Portefeuille (30 jours)</h6>
+                        </div>
+                        <div class="card-body">
+                            <div style="height: 300px; background: linear-gradient(180deg, rgba(40,167,69,0.1) 0%, transparent 100%); border-radius: 8px; display: flex; align-items: flex-end; padding: 20px; gap: 5px;">
+                                <div style="flex: 1; background: #28a745; height: 60%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 70%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 50%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 75%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 65%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 80%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 70%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 85%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 90%; border-radius: 5px;"></div>
+                                <div style="flex: 1; background: #28a745; height: 100%; border-radius: 5px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Allocation du Portefeuille -->
+                <div class="tab-pane fade" id="allocation-content" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-primary text-white">
+                                    <h6 class="mb-0">Répartition par Crypto</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Bitcoin</strong></span>
+                                            <span>45%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Ethereum</strong></span>
+                                            <span>30%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-info" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Binance Coin</strong></span>
+                                            <span>12%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 12%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Cardano</strong></span>
+                                            <span>5%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger" style="width: 5%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Cash</strong></span>
+                                            <span>8%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-secondary" style="width: 8%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-info text-white">
+                                    <h6 class="mb-0">Allocation par Risque</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Risque Élevé</strong></span>
+                                            <span>35%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger" style="width: 35%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Risque Moyen</strong></span>
+                                            <span>45%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span><strong>Risque Faible</strong></span>
+                                            <span>20%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 20%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offcanvas Dépôt -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="deposer">
+        <div class="offcanvas-header bg-primary text-white">
+            <h5 class="offcanvas-title">Effectuer un Dépôt</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="depotForm">
+                <div class="mb-3">
+                    <label for="methodeDpot" class="form-label">Méthode de Paiement</label>
+                    <select class="form-select" id="methodeDpot">
+                        <option value="">Choisir une méthode</option>
+                        <option value="carte">Carte Bancaire</option>
+                        <option value="virement">Virement Bancaire</option>
+                        <option value="wallet">Portefeuille Crypto</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="montantDpot" class="form-label">Montant ($)</label>
+                    <input type="number" class="form-control" id="montantDpot" placeholder="100.00" step="0.01">
+                </div>
+
+                <div class="alert alert-info">
+                    <small>Frais de transaction: <span id="fraisDpot">1%</span></small>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check-circle"></i> Confirmer le Dépôt
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Offcanvas Retrait -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="retrait">
+        <div class="offcanvas-header bg-danger text-white">
+            <h5 class="offcanvas-title">Effectuer un Retrait</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="retraitForm">
+                <div class="mb-3">
+                    <label for="methodeRetrait" class="form-label">Méthode de Retrait</label>
+                    <select class="form-select" id="methodeRetrait">
+                        <option value="">Choisir une méthode</option>
+                        <option value="carte">Virement Bancaire</option>
+                        <option value="wallet">Portefeuille Crypto</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="montantRetrait" class="form-label">Montant ($)</label>
+                    <input type="number" class="form-control" id="montantRetrait" placeholder="100.00" step="0.01">
+                </div>
+
+                <div class="mb-3">
+                    <label for="adresseRetrait" class="form-label">Adresse de Destination</label>
+                    <textarea class="form-control" id="adresseRetrait" rows="3" placeholder="Entrer l'adresse du portefeuille"></textarea>
+                </div>
+
+                <div class="alert alert-warning">
+                    <small><strong>Attention:</strong> Vérifiez bien l'adresse avant de confirmer!</small>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-check-circle"></i> Confirmer le Retrait
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-4">
+                    <h5><i class="bi bi-currency-bitcoin"></i> CryptoTrade</h5>
+                    <p>La plateforme de trading la plus fiable et sécurisée.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Produits</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Spot Trading</a></li>
+                        <li><a href="#" class="text-white-50">Futures</a></li>
+                        <li><a href="#" class="text-white-50">Options</a></li>
+                        <li><a href="#" class="text-white-50">Staking</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Ressources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Blog</a></li>
+                        <li><a href="#" class="text-white-50">Documentation</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Légal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Conditions</a></li>
+                        <li><a href="#" class="text-white-50">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-white-50">Cookies</a></li>
+                        <li><a href="#" class="text-white-50">Mentions Légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 CryptoTrade. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Dernière mise à jour: 28 Décembre 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Mot de Passe</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Se connecter
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>

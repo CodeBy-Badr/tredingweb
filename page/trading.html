@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading - CryptoTrade</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="bi bi-currency-bitcoin"></i> CryptoTrade
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="markets.html">
+                            <i class="bi bi-graph-up"></i> Marchés
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">
+                            <i class="bi bi-wallet2"></i> Portefeuille
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="trading.html">
+                            <i class="bi bi-shop"></i> Trading
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Connexion
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="trading-header pt-5 pb-4" style="margin-top: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3 text-center">Interface de Trading</h1>
+            <p class="lead mb-0 text-center">Achetez et vendez des cryptomonnaies en temps réel avec les meilleures conditions.</p>
+        </div>
+    </section>
+
+    <!-- Trading Zone -->
+    <section class="trading-zone py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Graphique et Info -->
+                <div class="col-lg-8">
+                    <!-- Sélecteur de Crypto -->
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0"><i class="bi bi-graph-up"></i> Graphique de Prix</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-select form-select-sm" id="cryptoSelector" onchange="updateChart()">
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="BNB">Binance Coin (BNB)</option>
+                                        <option value="XRP">Ripple (XRP)</option>
+                                        <option value="ADA">Cardano (ADA)</option>
+                                        <option value="SOL">Solana (SOL)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-select form-select-sm" id="timeFrame">
+                                        <option value="1h">1h</option>
+                                        <option value="4h">4h</option>
+                                        <option value="1d" selected>1j</option>
+                                        <option value="1w">1s</option>
+                                        <option value="1m">1m</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Graphique Simulé -->
+                            <div style="height: 400px; background: linear-gradient(180deg, rgba(40,167,69,0.1) 0%, transparent 100%); border-radius: 8px; display: flex; align-items: flex-end; padding: 20px; gap: 8px; position: relative;">
+                                <div style="flex: 1; background: #28a745; height: 40%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 50%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 35%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 60%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 55%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 70%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 65%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 75%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 80%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 90%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 95%; border-radius: 5px; transition: all 0.3s;"></div>
+                                <div style="flex: 1; background: #28a745; height: 100%; border-radius: 5px; transition: all 0.3s;"></div>
+                            </div>
+
+                            <!-- Infos Prix -->
+                            <div class="row mt-4">
+                                <div class="col-md-3">
+                                    <small class="text-muted">Prix Actuel</small>
+                                    <h5 id="currentPrice">$45,234.50</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <small class="text-muted">Variation 24h</small>
+                                    <h5 class="text-success">+2.5%</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <small class="text-muted">Haut/Bas 24h</small>
+                                    <h5>$47.2K / $44.8K</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <small class="text-muted">Volume 24h</small>
+                                    <h5>$28.5B</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Indicateurs Techniques -->
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="bi bi-speedometer2"></i> Indicateurs Techniques</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <small class="text-muted">RSI (14)</small>
+                                    <div class="progress" style="height: 25px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
+                                            65
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small class="text-muted">MACD</small>
+                                    <div class="progress" style="height: 25px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 45%">
+                                            Positif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small class="text-muted">Bandes de Bollinger</small>
+                                    <div class="progress" style="height: 25px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 72%">
+                                            72%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <small class="text-muted">Volume</small>
+                                    <div class="progress" style="height: 25px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%">
+                                            Haut
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire de Trading -->
+                <div class="col-lg-4">
+                    <div class="card shadow-lg border-primary sticky-top" style="top: 100px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-lightning-charge"></i> Passer un Ordre</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="tradingForm">
+                                <!-- Type d'Ordre -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Type d'Ordre</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="orderType" id="achat" value="achat" checked>
+                                        <label class="btn btn-outline-success" for="achat">
+                                            <i class="bi bi-arrow-up"></i> Achat
+                                        </label>
+                                        <input type="radio" class="btn-check" name="orderType" id="vente" value="vente">
+                                        <label class="btn btn-outline-danger" for="vente">
+                                            <i class="bi bi-arrow-down"></i> Vente
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Type de Commande -->
+                                <div class="mb-3">
+                                    <label for="orderTypeSelect" class="form-label fw-bold">Type de Commande</label>
+                                    <select class="form-select" id="orderTypeSelect" onchange="updateOrderType()">
+                                        <option value="limit">Ordre Limité</option>
+                                        <option value="market">Ordre au Marché</option>
+                                        <option value="stop">Stop Loss</option>
+                                        <option value="trailing">Trailing Stop</option>
+                                    </select>
+                                </div>
+
+                                <!-- Crypto -->
+                                <div class="mb-3">
+                                    <label for="tradingCrypto" class="form-label fw-bold">Cryptomonnaie</label>
+                                    <select class="form-select" id="tradingCrypto" required>
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="BNB">Binance Coin (BNB)</option>
+                                        <option value="XRP">Ripple (XRP)</option>
+                                        <option value="ADA">Cardano (ADA)</option>
+                                        <option value="SOL">Solana (SOL)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Prix -->
+                                <div class="mb-3">
+                                    <label for="tradingPrice" class="form-label fw-bold">Prix ($)</label>
+                                    <input type="number" class="form-control" id="tradingPrice" placeholder="45234.50" step="0.01" required>
+                                </div>
+
+                                <!-- Quantité -->
+                                <div class="mb-3">
+                                    <label for="tradingQuantity" class="form-label fw-bold">Quantité</label>
+                                    <input type="number" class="form-control" id="tradingQuantity" placeholder="0.5" step="0.0001" required oninput="calculateTotal()">
+                                </div>
+
+                                <!-- Total -->
+                                <div class="alert alert-info mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Total Estimé:</span>
+                                        <h5 id="tradingTotal" class="mb-0">$0.00</h5>
+                                    </div>
+                                </div>
+
+                                <!-- Frais -->
+                                <div class="mb-3">
+                                    <label for="fees" class="form-label fw-bold">Frais (0.1%)</label>
+                                    <input type="number" class="form-control" id="fees" readonly value="0.00">
+                                </div>
+
+                                <!-- Stop Loss (Conditionnel) -->
+                                <div class="mb-3" id="stopLossDiv" style="display: none;">
+                                    <label for="stopLoss" class="form-label fw-bold">Stop Loss ($)</label>
+                                    <input type="number" class="form-control" id="stopLoss" placeholder="40000" step="0.01">
+                                </div>
+
+                                <!-- Take Profit (Conditionnel) -->
+                                <div class="mb-3" id="takeProfitDiv" style="display: none;">
+                                    <label for="takeProfit" class="form-label fw-bold">Take Profit ($)</label>
+                                    <input type="number" class="form-control" id="takeProfit" placeholder="50000" step="0.01">
+                                </div>
+
+                                <!-- Levier (Optionnel) -->
+                                <div class="mb-3">
+                                    <label for="leverage" class="form-label fw-bold">Levier</label>
+                                    <select class="form-select" id="leverage">
+                                        <option value="1">1x (Aucun levier)</option>
+                                        <option value="2">2x</option>
+                                        <option value="5">5x</option>
+                                        <option value="10">10x</option>
+                                    </select>
+                                </div>
+
+                                <!-- Boutons -->
+                                <button type="submit" class="btn btn-success btn-lg w-100 mb-2">
+                                    <i class="bi bi-check-circle"></i> Confirmer l'Ordre
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ordres Ouverts -->
+    <section class="open-orders py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-hourglass-split"></i> Ordres Ouverts
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Paire</th>
+                            <th>Type</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Statut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BTC/USD</strong></td>
+                            <td><span class="badge bg-success">Achat</span></td>
+                            <td>$45,234</td>
+                            <td>0.1</td>
+                            <td>$4,523.40</td>
+                            <td><span class="badge bg-warning">En Attente</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" onclick="cancelOrder()">
+                                    <i class="bi bi-x-circle"></i> Annuler
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ETH/USD</strong></td>
+                            <td><span class="badge bg-danger">Vente</span></td>
+                            <td>$3,150</td>
+                            <td>1</td>
+                            <td>$3,150</td>
+                            <td><span class="badge bg-info">Partiellement Rempli</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" onclick="cancelOrder()">
+                                    <i class="bi bi-x-circle"></i> Annuler
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historique des Trades -->
+    <section class="trade-history py-5">
+        <div class="container">
+            <h2 class="section-title mb-4 text-center">
+                <i class="bi bi-clock-history"></i> Historique des Trades
+            </h2>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Date/Heure</th>
+                            <th>Paire</th>
+                            <th>Type</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Frais</th>
+                            <th>P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-12-28 15:45:23</td>
+                            <td>BTC/USD</td>
+                            <td><span class="badge bg-success">Achat</span></td>
+                            <td>$44,850</td>
+                            <td>0.2</td>
+                            <td>$8,970</td>
+                            <td>$8.97</td>
+                            <td><span class="text-success">+$768.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-12-28 14:20:10</td>
+                            <td>ETH/USD</td>
+                            <td><span class="badge bg-danger">Vente</span></td>
+                            <td>$3,200</td>
+                            <td>2</td>
+                            <td>$6,400</td>
+                            <td>$6.40</td>
+                            <td><span class="text-success">+$250.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-12-27 10:15:45</td>
+                            <td>BNB/USD</td>
+                            <td><span class="badge bg-success">Achat</span></td>
+                            <td>$600</td>
+                            <td>5</td>
+                            <td>$3,000</td>
+                            <td>$3.00</td>
+                            <td><span class="text-success">+$100.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-12-26 09:30:15</td>
+                            <td>ADA/USD</td>
+                            <td><span class="badge bg-danger">Vente</span></td>
+                            <td>$1.25</td>
+                            <td>100</td>
+                            <td>$125</td>
+                            <td>$0.13</td>
+                            <td><span class="text-danger">-$15.00</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stratégies de Trading -->
+    <section class="trading-strategies py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-5 text-center">
+                <i class="bi bi-lightbulb"></i> Stratégies de Trading
+            </h2>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="bi bi-arrow-up-down"></i> Scalping
+                            </h6>
+                            <p class="card-text text-muted small">
+                                Profitez des petits mouvements de prix avec des trades rapides et fréquents.
+                            </p>
+                            <button class="btn btn-sm btn-primary">En savoir plus</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="bi bi-graph-up"></i> Swing Trading
+                            </h6>
+                            <p class="card-text text-muted small">
+                                Maintenez des positions pendant plusieurs jours ou semaines pour capturer les tendances.
+                            </p>
+                            <button class="btn btn-sm btn-primary">En savoir plus</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="bi bi-hourglass-bottom"></i> Position Trading
+                            </h6>
+                            <p class="card-text text-muted small">
+                                Investissez long terme en crypto avec une vision stratégique à long terme.
+                            </p>
+                            <button class="btn btn-sm btn-primary">En savoir plus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-4">
+                    <h5><i class="bi bi-currency-bitcoin"></i> CryptoTrade</h5>
+                    <p>La plateforme de trading la plus fiable et sécurisée.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Produits</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Spot Trading</a></li>
+                        <li><a href="#" class="text-white-50">Futures</a></li>
+                        <li><a href="#" class="text-white-50">Options</a></li>
+                        <li><a href="#" class="text-white-50">Staking</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Ressources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Blog</a></li>
+                        <li><a href="#" class="text-white-50">Documentation</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                        <li><a href="#" class="text-white-50">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6>Légal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Conditions</a></li>
+                        <li><a href="#" class="text-white-50">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-white-50">Cookies</a></li>
+                        <li><a href="#" class="text-white-50">Mentions Légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 CryptoTrade. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Dernière mise à jour: 28 Décembre 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Mot de Passe</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Se connecter
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/trading.js"></script>
+</body>
+</html>
